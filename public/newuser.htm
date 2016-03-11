@@ -1,0 +1,43 @@
+﻿<head>
+<!doctype html><html lang="de"><meta http-equiv="content-language" content="de"> <meta charset="UTF-8"><html><head><title>Nachrichten Login</title> 
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-sanitize.js"></script>
+ <link rel="stylesheet" href="mystyle.css"> 
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<html>
+<body ng-app="logg">
+<center><br><br><br><br>
+<div style=width:50% ng-controller="logger">
+<img src=banner_1.PNG>
+<form>
+<table><tr><td>
+</td><td>Create New User</td></tr><tr><td>
+Email:</td><td><input name=user ng-model="logg"></td></tr><tr><td>
+PassW:</td><td><input type=password name=passw ng-model="passw"></td></tr><tr><td>
+<input type=button value="Create" ng-click="login()"  ng-disabled="mydisabled">
+</td><td></td></tr>
+<tr><td> </td><td> </td></tr>
+<tr><td></td><td style=text-align:right;font-size:11px;><a href=login.html>Login</a><br><br><a href=resetpw.html>Reset Password</a></td></tr>
+
+</table>
+</form>
+</div>
+</center>
+<div style=position:fixed;bottom:10px;right:20px>mrbrettjones@gmail.com</div>
+</html>
+<script>
+var myApp=angular.module('logg', []);
+myApp.controller('logger', ['$scope', '$http', '$element','$location', '$anchorScroll', function($scope,$http,$element,$location,$anchorScroll) {
+$scope.mydisabled=false; 
+
+$scope.login = function() {
+   $http({ url: '/app.js', method: "GET", params: {o: 'nu',user: $scope.logg, passw: $scope.passw}}).success(function(data, status, headers, config) 
+ { alert(data); })
+ }
+ 
+}]);
+
+</script>
+</body>
