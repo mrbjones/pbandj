@@ -28,7 +28,7 @@
 </form></div>
 
 
-<tableng-init="listcars()">
+<table ng-init="listcirs()">
 <tr ng-repeat="cir in circuitlist">
 <td style=font-family:verdana;font-size:11px>{{cir.path.key}}</td>
 <td style=font-family:verdana;font-size:11px>{{cir.value.cid}}</td>
@@ -54,7 +54,7 @@ $scope.loggout = function() {
   $http({ url: window.location.hostname +'/app.js', method: "GET", params: {o: 'loggout',search: $scope.searchz, offs: $scope.pagerz}}).success(function(data, status, headers, config) {window.location.href='login.html'} )
  }
  
- $scope.listcars = function()  {
+ $scope.listcirs = function()  {
 $http({ url: window.location.hostname+'/app.js',    method: "GET",    params: {o: 'g'}}).success(function(data) {$scope.circuitlist=[]; $scope.circuitslist=data }); }; 
 
  $scope.update = function(cirz)  { $http({ url:  window.location.hostname +'/app.js',    method: "GET",    params: {o: 'p',key: cirz.key, circuitid: cirz.cid, circuittype: cirz.cty, circuitprovider: cirz.cpr, circuitsize: cirz.csz}}).success(function(data, status, headers, config) 
