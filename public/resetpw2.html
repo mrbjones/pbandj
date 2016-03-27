@@ -1,0 +1,51 @@
+<head>
+<!doctype html><html lang="de"><meta http-equiv="content-language" content="de"> <meta charset="UTF-8"><html><head><title>Nachrichten Login</title> 
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-cookies.js"></script>
+ <link rel="stylesheet" href="mystyle.css"> 
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<html>
+<body ng-app="logg">
+<center><br><br><br><br>
+<div style=width:50% ng-controller="logger">
+<img src=zeitung.PNG>
+<form>
+<table><tr><td>
+</td><td>Passwort zurücksetzen</td></tr>
+<tr><td>Neues Passwort</td><td><input type=password name=passw1 ng-model="passw1"></td></tr>
+<tr><td>Passwort Wiederholen</td><td><input type=password name=passw2 ng-model="passw2"></td></tr>
+<tr><td><input type=button value="Save" ng-click="login()"  ng-disabled="mydisabled">
+</td><td></td></tr>
+<tr><td> </td><td> </td></tr>
+<tr><td> </td><td> </td></tr>
+<tr><td></td><td style=text-align:right;font-size:11px;><a href=newuser.html>Neue Benutzer Anmelden</a><br><br><a href=login.html>Einloggen</a></td></tr>
+<tr><td colspan=2><div ng-model="returner"></div></td></tr>
+</table>
+</form>
+</div>
+</center>
+<div style=position:fixed;bottom:10px;right:20px>mrbrettjones@gmail.com</div>
+</html>
+
+<script>
+var myApp=angular.module('logg', ['ngCookies']);
+myApp.controller('logger', ['$scope', '$http', '$element','$location', '$anchorScroll', '$cookies', function($scope,$http,$element,$location,$anchorScroll,$cookies) {
+$scope.mydisabled=false; 
+usern=$cookies.get('email')
+hashr=$cookies.get('hash')
+
+$scope.login = function($cookies) {
+ if ($scope.passw1 === $scope.passw2){
+   $http({ url: '/app.js', method: "GET", params: {o: 'resetpw3',user: usern, hash: hashr, passw1: $scope.passw1 }}).success(function(data) 
+ {window.location.href='index.html'})
+ }
+ else
+ {alert('Passwords do not match!')}
+ }
+ 
+}]);
+
+</script>
+</body>
