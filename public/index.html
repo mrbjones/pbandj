@@ -26,10 +26,11 @@
 <tr><td colspan=2><input type=button  ng-click="update(cirz)" value="Save" ></td></tr>
 <tr><td ng-bind="responder"></td></tr></table>
 </form></div>
-
+<br><br>
 
 <table ng-init="listcirs()">
- <tr><td>Name</td><td>ID</td><td>Size</td><td>Type</td></tr>
+ <tr><td>Name</td><td>ID</td><td>Size</td><td>Provider</td><td>Type</td></tr>
+ <tr><td colspan=5><hr></td></tr>
 <tr ng-repeat="cir in circuitlist">
 <td style=font-family:verdana;font-size:11px>{{cir.path.key}}</td>
 <td style=font-family:verdana;font-size:11px>{{cir.value.circuitid}}</td>
