@@ -57,7 +57,7 @@ $scope.loggout = function() {
  $scope.listcirs = function()  {
 $http({ url: window.location.hostname+'/app.js',    method: "GET",    params: {o: 'g'}}).success(function(data) {$scope.circuitlist=[]; $scope.circuitlist=data }); }; 
 
- $scope.update = function(cirz)  { $http({ url:  window.location.hostname +'/app.js',    method: "GET",    params: {o: 'p',key: cirz.key, circuitid: cirz.cid, circuittype: cirz.cty, circuitprovider: cirz.cpr, circuitsize: cirz.csz}}).success(function(data, status, headers, config) 
+ $scope.update = function(cirz)  { $http({ url:  window.location.hostname +'/app.js',    method: "GET",    params: {o: 'p',key: cirz.key, cid: cirz.cid, cty: cirz.cty, cpr: cirz.cpr, csz: cirz.csz}}).success(function(data, status, headers, config) 
 {$scope.listcirs(); $scope.$apply; $scope.cirz.key='';$scope.cirz.cid='';$scope.cirz.csz='';$scope.cirz.cpr='';$scope.cirz.cty=''; 
 document.getElementById("footer").style.display="none"; });   }; 
 
