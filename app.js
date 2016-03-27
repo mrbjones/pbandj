@@ -25,87 +25,22 @@ orchestrate_api_endpoint = node.credentials.ORCHESTRATE_API_HOST
 var db = require("orchestrate")(orchestrate_api_key,orchestrate_api_endpoint);
 
 function starter() {
-      db.put('users', 'xyz', '{"username": "xyz", "hash": "123", "statusr": "inactive"}', true).then(console.log('up!'))
+      db.put('tusers', 'xyz', '{"username": "xyz", "hash": "123", "statusr": "inactive"}', true).then(console.log('up!'))
 }
 
-function OLDgetter(user,cb) {
-db.search('nachrichten', '*', {  sort: 'value.pubDate:desc',  limit: 15} )
-.then(function (result) {
-cb(JSON.stringify(result))
-})}
 
-function getter(user,cb) {
-db.search('nachrichten', '*', {sort: 'value.pubDate:desc',  limit: 15} )
-.then(function (result) {
-      var items = result.body.results;
-      sear="("
-      items.forEach(function(resser) {
-      sear=sear + "@path.destination.key:`"+resser.path.key+"` OR "
-      });
-      sear=sear.substr(1, sear.length-4)
-      sear=sear+")"
-      searcher='@path.kind:relationship AND @path.source.key:'+user
-      searcher=searcher+' AND ('+sear
-db.newSearchBuilder()
-.query(searcher)
-.then(function (relres) {
-      if (relres.body.count > 0){
-      var items1 = relres.body.results;
-      items1.forEach(function(resser1) {
-items.forEach(function(resser) {
-      if (resser1.path.destination.key == resser.path.key)
-      {resser.value.liker="1===1"
-      }
-});
 
-});
 
-cb(JSON.stringify(result))
-}
-if (relres.body.count == 0){
-      cb(JSON.stringify(result))
-      }
-})
-    .fail(function (res1) { 
-           console.log(JSON.stringify(res1));
-    })
-})
-}
 
-function makeLike(user,key,cb){
-db.newGraphBuilder()
-.create()
-.from('users', user)
-.related('marked')
-.to('nachrichten', key)
-.then(function (result) {
-  console.log(result.statusCode);
-  cb("liked!")
-})
-.fail(function (err) {console.log(err);cb('none')})
-}
 
-function removeLike(user,key,cb){
-db.newGraphBuilder()
-.remove()
-.from('users', user)
-.related('marked')
-.to('nachrichten', key)
-.then(function (result) {
-  console.log(result.statusCode);
-  cb("unliked!")
-})
-.fail(function (err) {console.log(err);cb('none')})
-}
-/* */
 function loggIn(user,passw,cb){
-      if (user==='' || user==undefined|| !user){user='dummy'};
+     if (user==='' || user==undefined|| !user){user='dummy'};
      if (user != 'dummy') {
-db.get('users', user)    
+db.get('tusers', user)    
 .then(function (result) {
      if (result.body.password == passw && result.body.statusr == 'active'){
      var hash2 = Math.random();var hasher = (hash2 * 100000000000000000);
-db.newPatchBuilder('users', user)
+db.newPatchBuilder('tusers', user)
   .replace('hash', hasher)
   .apply()
   .then(cb(hasher))
@@ -120,7 +55,7 @@ db.newPatchBuilder('users', user)
 function checker(user,hash,cb){
      if (user==='' || user==undefined|| !user){user='dummy'};
      if (user != 'dummy') {
-db.get('users', user)    
+db.get('tusers', user)    
 .then(function (result) {
      console.log(result.body.hash +' '+result.body.statusr)
      if (result.body.hash == hash && result.body.statusr == 'active'){console.log('true');cb("true")}
@@ -129,7 +64,7 @@ db.get('users', user)
 )} else {console.log('false-'+user+hash);cb('false')} }
 
 function activateAct(user,hash) {
-  db.get('users', user)
+  db.get('tusers', user)
   .then(function (result) {
     if (result.body.hash == hash){
    db.newPatchBuilder('users', user)
@@ -140,11 +75,11 @@ function activateAct(user,hash) {
 };
 
 function rpw1(user,cb){
- db.get('users', user )
+ db.get('tusers', user )
 .then(function (result) {
     if (result.body.username == user)
     {var hash1 = Math.random();var hasher = (hash1 * 100000000000000000);
- db.newPatchBuilder('users', user)
+ db.newPatchBuilder('tusers', user)
   .replace('hash', hasher)
   .apply()
   .then(function (result) {
@@ -157,7 +92,7 @@ function rpw1(user,cb){
   }
 
 function rpw2(user,hash,cb){
-      db.get('users', user )
+      db.get('tusers', user )
 .then(function (result) { 
 if (result.body.username==user&&result.body.hash==hash)
 {cb('true')}
@@ -166,10 +101,10 @@ else
 })}
 
 function rpw3(user,hash,passw1,cb){
-      db.get('users', user )
+      db.get('tusers', user )
 .then(function (result) { 
 if (result.body.username==user&&result.body.hash==hash)
-{db.newPatchBuilder('users', user)
+{db.newPatchBuilder('tusers', user)
   .replace('password', passw1)
   .apply()
   .then(function (result) {console.log('pwreset');cb('Password Reset!')})}
@@ -177,56 +112,17 @@ else
 {cb('Bad Hash, Man.')}
 })}
 
-function searchy(a,b,user,cb) {
-db.search('nachrichten', a, {  sort: 'value.pubDate:desc',  limit: 15, offset: b} )
-.then(function (sresult) {
-      var sitems = sresult.body.results;
-      var ssear="("
-      sitems.forEach(function(sresser) {
-      ssear=ssear + "@path.destination.key:`"+sresser.path.key+"` OR "
-      });
-      ssear=ssear.substr(1, ssear.length-4)
-      ssear=ssear+")"
-      ssearcherer='@path.kind:relationship AND @path.source.key:'+user
-      ssearcherer=ssearcherer+' AND ('+ssear
-db.newSearchBuilder()
-.query(ssearcherer)
-.then(function (srelres) {
-      console.log(srelres.body.count)
-      if (srelres.body.count > 0){
-      var sitems1 = srelres.body.results;
-      sitems1.forEach(function(sresser1) {
-sitems.forEach(function(sresser) {
-      if (sresser1.path.destination.key == sresser.path.key)
-      {
-      sresser.value.liker="1===1"
-      }
-});
-});
-ssear="";searcherer=""
-cb(JSON.stringify(sresult))
-}
-if (srelres.body.count < 1){
-     ssear="";searcherer=""
-      cb(JSON.stringify(sresult))
-      }
-})
-    .fail(function (res1) { 
-           console.log(JSON.stringify(res1));
-    })
-})
-}
 
 function newuser(user,passw,cb) {
      if (user == undefined || passw ==undefined) {cb('Please Choose a Username and a Password.')}
-db.get('users', user )
+db.get('tusers', user )
 .then(function(response){cb('Username Taken.')})
 .fail(function (result) { 
 var hash1 = Math.random();
 var hash = (hash1 * 100000000000000000);
 var jsonString = "{\"username\":\"" +user+ "\", \"password\":\""+passw+"\", \"statusr\":\""+"inactive"+"\", \"hash\":\""+hash+"\" }";
 var jsonObj = JSON.parse(jsonString);
-db.put('users', user, jsonObj, false)
+db.put('tusers', user, jsonObj, false)
 .then(function (result) {
 mailer(user,hash);
 cb('You will receive an email to activate this account.');
@@ -245,8 +141,8 @@ var transporter = nodemailer.createTransport(smtpTransport({
 transporter.sendMail({
     from: 'ZZRJ1-relay@t3mx.com',
     to: mail,
-    subject: 'Please confirm your Zeitung account',
-    html: 'Please click the link to confirm your new Zeitung account<br><a href=http://liker.uswest.appfog.ctl.io/?o=act&user='+mail+'&hash='+hash+' >http://loggin.uswest.appfog.ctl.io/?o=act&user='+mail+'&hash='+hash+'</a>'
+    subject: 'Please confirm your PBandJ account',
+    html: 'Please click the link to confirm your new PBandJ account<br><a href=http://pbandj.uswest.appfog.ctl.io/?o=act&user='+mail+'&hash='+hash+' >http://pbandj.uswest.appfog.ctl.io/?o=act&user='+mail+'&hash='+hash+'</a>'
 });
 console.log(mail);
 }
@@ -263,7 +159,7 @@ transporter.sendMail({
     from: 'ZZRJ1-relay@t3mx.com',
     to: mail,
     subject: 'Please reset your Zeitung password',
-    html: 'Please click the link to reset your  Zeitung password<br><a href=http://liker.uswest.appfog.ctl.io/?o=resetpw2&user='+mail+'&hash='+hash+' >http://loggin.uswest.appfog.ctl.io/?o=resetpw2&user='+mail+'&hash='+hash+'</a>'
+    html: 'Please click the link to reset your PBandJ password<br><a href=http://pbandj.uswest.appfog.ctl.io/?o=resetpw2&user='+mail+'&hash='+hash+' >http://pbandj.uswest.appfog.ctl.io/?o=resetpw2&user='+mail+'&hash='+hash+'</a>'
 });
 console.log(mail);
 }
@@ -297,22 +193,7 @@ starter();
 var server = http.createServer(function(request, response) {
 var queryData = url.parse(request.url, true).query;
 
-//this one just sends the json from ochestrate
-if (queryData.o == "g") {
-response.writeHead(200, {'Content-Type': 'text/plain;charset=UTF-8'});
-getter(queryData.user, function(resp)
-{response.write(resp);response.end();
-}); }
-//this one does a search!
-if (queryData.o == "s") {
-response.writeHead(200, {'Content-Type': 'text/plain;charset=UTF-8'});
-var offs=queryData.offs
-if (offs==''){offs=0};
-var cookies = new Cookies( request, response )
-user=cookies.get("email")
-searchy(queryData.search+'*', offs, user, function(resp12)
-{response.write(resp12);response.end();
-}); }
+
 //this creates a new user
 if (queryData.o == "nu") {
 response.writeHead(200, {'Content-Type': 'text/plain;charset=UTF-8'});
@@ -382,26 +263,6 @@ var cookies = new Cookies( request, response )
   response.end();
 }
 
-//this creates a graph
-if (queryData.o == "like1")
-{
-       checker(queryData.user, queryData.hash, function(resp) {
-            if (resp == "true"){
-            makeLike(queryData.user,queryData.key,  function(resp1) {
-            response.write(resp1);response.end();
-   })      }
-      })}
-
-//this deletes a graph
-if (queryData.o=="like2")
-{
-       checker(queryData.user, queryData.hash, function(resp) {
-            if (resp == "true"){
-            removeLike(queryData.user,queryData.key,  function(resp1) {
-            response.write(resp1);response.end();
-   })      }
-      })}
-
 //this activates an account
 if (queryData.o == "act" ) {
 hash1=queryData.hash
@@ -411,6 +272,7 @@ filePath = "public/login.html";
 var absPath = filePath;
 serverWorking(response, absPath); 
 }
+
 //this one sends the page!
 if (queryData.o == "" || ! queryData.o ) {
 filePath = "";
