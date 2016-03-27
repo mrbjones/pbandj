@@ -18,7 +18,7 @@
 <div   id=footer style=display:none;>
 <form  novalidate class="simple-form" >
 <table>
- <tr><td>name</td><td><input ng-model="cirz.key"><input style=display:none;  value='p'  ng-model="carz.o"></td></tr>
+ <tr><td>name</td><td><input ng-model="cirz.key"><input style=display:none;  value='p'  ng-model="cirz.o"></td></tr>
 <tr><td>make</td><td><input  ng-model="cirz.cid"></td></tr>
 <tr><td>model</td><td><input  ng-model="cirz.csz"></td></tr>
 <tr><td>year</td><td><input  ng-model="cirz.cpr"></td></tr>
@@ -57,7 +57,7 @@ $scope.loggout = function() {
  $scope.listcars = function()  {
 $http({ url: window.location.hostname+'/app.js',    method: "GET",    params: {o: 'g'}}).success(function(data) {$scope.circuitlist=[]; $scope.circuitslist=data }); }; 
 
- $scope.update = function(cirz)  { $http({ url:  window.location.hostname +'/app.js',    method: "GET",    params: {o: 'p',key: carz.key, circuitid: cirz.cid, circuittype: cirz.cty, circuitprovider: cirz.cpr, circuitsize: cirz.csz}}).success(function(data, status, headers, config) 
+ $scope.update = function(cirz)  { $http({ url:  window.location.hostname +'/app.js',    method: "GET",    params: {o: 'p',key: cirz.key, circuitid: cirz.cid, circuittype: cirz.cty, circuitprovider: cirz.cpr, circuitsize: cirz.csz}}).success(function(data, status, headers, config) 
 {$scope.listcirs(); $scope.$apply; $scope.cirz.key='';$scope.cirz.cid='';$scope.cirz.csz='';$scope.cirz.cpr='';$scope.cirz.cty=''; 
 document.getElementById("footer").style.display="none"; });   }; 
 
