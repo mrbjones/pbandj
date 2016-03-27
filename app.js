@@ -27,12 +27,7 @@ var db = require("orchestrate")(orchestrate_api_key,orchestrate_api_endpoint);
 function starter() {
       db.put('tusers', 'xyz', '{"username": "xyz", "hash": "123", "statusr": "inactive"}', true).then(console.log('up!'))
 }
-
-
-
-
-
-
+//start login functions
 function loggIn(user,passw,cb){
      if (user==='' || user==undefined|| !user){user='dummy'};
      if (user != 'dummy') {
@@ -163,6 +158,29 @@ transporter.sendMail({
 });
 console.log(mail);
 }
+//end login functions
+
+//start page functions
+function putter(keyer,cid,csz,cpr,cty,cb) {
+var jsonString = "{\"circuitid\":\"" +cid+ "\", \"circuitsize\":\""+csz+"\", \"circuitprovider\":\""+cpr+"\", \"circuittype\":\""+cty+"\"}";
+var jsonObj = JSON.parse(jsonString);
+db.put('circuits', keyer, jsonObj, false);
+ cb("success :!");
+};
+
+function getter(cb) {
+db.list('circuits')
+.then(function (result) {
+  var items = result.body.results;
+  cb(JSON.stringify(items, ['path', 'key', 'value', 'circuitid', 'circuitsize', 'circuitprovider', 'circuittype']));
+})};
+
+function remover(keyer, cb) {
+db.remove('circuits', keyer, true);
+ cb("successfully removed :!");
+};
+
+//end page functions
 
 function send404(response) {
 response.writeHead(404, {"Content-type" : "text/plain"});
