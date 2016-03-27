@@ -31,10 +31,10 @@
 <table ng-init="listcirs()">
 <tr ng-repeat="cir in circuitlist">
 <td style=font-family:verdana;font-size:11px>{{cir.path.key}}</td>
-<td style=font-family:verdana;font-size:11px>{{cir.value.cid}}</td>
-<td style=font-family:verdana;font-size:11px>{{cir.value.csz}}</td>
-<td style=font-family:verdana;font-size:11px>{{cir.value.cpr}}</td>
-<td style=font-family:verdana;font-size:11px>{{cir.value.cty}}</td>
+<td style=font-family:verdana;font-size:11px>{{cir.value.circuitid}}</td>
+<td style=font-family:verdana;font-size:11px>{{cir.value.circuitsize}}</td>
+<td style=font-family:verdana;font-size:11px>{{cir.value.circuitprovider}}</td>
+<td style=font-family:verdana;font-size:11px>{{cir.value.circuittype}}</td>
 <td style=font-family:verdana;font-size:11px>
 <input type=button ng-click="deleter(cir)" name='Delete' value='X'></td>
 </tr>
