@@ -3,3 +3,5 @@ applications:
 - name: nachrichten
 memory: 16M
 command: node app.js
+services:
+- pbj_orch
