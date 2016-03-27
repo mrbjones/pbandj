@@ -1,1 +1,22 @@
-x
+<body ng-app="putter">
+ <a id="topp"></a>
+<div id=main ng-controller="ListNews" >
+ <div style=float:right>{{emailer}} | <a href style=color:blue;cursor:hand; ng-click="loggout()">Logout</a></div>
+<center><br><br><a href=index.html style=text-decoration:none;><img src=pbandj.jpg ></a>
+
+
+
+
+
+<script>
+var myApp=angular.module('putter', ['ngCookies']);
+myApp.controller('ListNews', ['$scope', '$http', '$element','$location', '$anchorScroll', '$cookies',  function($scope,$http,$element,$location,$anchorScroll,$cookies) {
+
+var cooker=$cookies.get('email');
+if (cooker == "" || cooker == undefined) {}
+$scope.emailer=cooker;
+$scope.loggout = function() {
+  $http({ url: window.location.hostname +'/app.js', method: "GET", params: {o: 'loggout',search: $scope.searchz, offs: $scope.pagerz}}).success(function(data, status, headers, config) {window.location.href='login.html'} )
+ }
+}]);
+ </script>
