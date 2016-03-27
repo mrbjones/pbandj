@@ -1,0 +1,67 @@
+table { margin-left:auto;margin-right:auto;width:75%;min-width:300px;max-width:750px  }
+a {text-decoration:none;}
+form {font-family:verdana;font-size:13px;font-weight:bold;margin-left:auto;margin-right:auto;width:75%;min-width:300px;max-width:750px; }
+hr {
+    border: 0;
+    
+    background: #eeeeee;
+}
+span {color:gray;}
+
+input[type=checkbox] {
+	visibility: hidden;
+}
+
+
+
+/* SQUARED FOUR */
+.squaredFour {
+	width: 10px;	
+	margin: 20px auto;
+	position: relative;
+}
+
+.squaredFour label {
+	cursor: pointer;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 0;
+        left: 0;
+	border-radius: 5px;
+	background: #eeeeee;
+}
+
+.squaredFour label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=60);
+	opacity: 0;
+	content: '';
+	position: absolute;
+	width: 9px;
+	height: 5px;
+	background: transparent;
+	top: 4px;
+	left: 4px;
+	border: 3px solid #333;
+	border-top: none;
+	border-right: none;
+
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.squaredFour label:hover::after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	opacity: 0.5;
+}
+
+.squaredFour input[type=checkbox]:checked + label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
