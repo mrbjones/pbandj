@@ -1,5 +1,5 @@
 <head>
-<!doctype html><html lang="de"><meta http-equiv="content-language" content="de"> <meta charset="UTF-8"><html><head><title>Nachrichten Login</title> 
+<!doctype html><html lang="de"><meta http-equiv="content-language" content="de"> <meta charset="UTF-8"><html><head><title>PBandJ Login</title> 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-cookies.js"></script>
  <link rel="stylesheet" href="mystyle.css"> 
@@ -10,17 +10,17 @@
 <body ng-app="logg">
 <center><br><br><br><br>
 <div style=width:50% ng-controller="logger">
-<img src=zeitung.PNG>
+<img src=pbandj.jpg>
 <form>
 <table><tr><td>
-Reset Password</td><td>Passwort zurücksetzen</td></tr><tr><td>
+Reset Password</td><td>Reset Password</td></tr><tr><td>
 Email:</td><td><input name=user ng-model="logg"></td></tr>
 
-<tr><td><input type=button value="Zurücksetzen" ng-click="login()"  ng-disabled="mydisabled">
+<tr><td><input type=button value="Reset" ng-click="login()"  ng-disabled="mydisabled">
 </td><td></td></tr>
 <tr><td> </td><td> </td></tr>
 <tr><td> </td><td> </td></tr>
-<tr><td></td><td style=text-align:right;font-size:11px;><a href=newuser.html>Neue Benutzer Anmelden</a><br><br><a href=login.html>Einloggen</a></td></tr>
+<tr><td></td><td style=text-align:right;font-size:11px;><a href=newuser.html>Create New User</a><br><br><a href=login.html>Login</a></td></tr>
 <tr><td colspan=2><div ng-model="returner"></div></td></tr>
 </table>
 </form>
