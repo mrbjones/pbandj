@@ -291,6 +291,33 @@ var absPath = filePath;
 serverWorking(response, absPath); 
 }
 
+ if (queryData.o == "p")
+{ 
+    cid=queryData.cid;
+    csz=queryData.csz
+    cty=queryData.cty
+    cpr=queryData.cpr
+    ckey=queryData.key
+    
+    putter(ckey,cid,csz,cty,cpr, function(resp)
+ {response.write(resp);response.end();
+ });
+} 
+  if (queryData.o == "g")
+{ getter( function(resp)
+ { response.write(resp);response.end();
+ });
+} 
+
+  if (queryData.o == "d")
+  {
+  ckey=queryData.key
+ remover(ckey, function(resp)
+ { response.write(resp);response.end();
+ });
+}
+
+
 //this one sends the page!
 if (queryData.o == "" || ! queryData.o ) {
 filePath = "";
