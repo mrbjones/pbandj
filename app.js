@@ -67,7 +67,7 @@ function activateAct(user,hash) {
   db.get('tusers', user)
   .then(function (result) {
     if (result.body.hash == hash){
-   db.newPatchBuilder('users', user)
+   db.newPatchBuilder('tusers', user)
   .replace('statusr', 'active')
   .apply()
 }})
