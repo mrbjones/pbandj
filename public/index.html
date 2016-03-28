@@ -16,11 +16,10 @@
 <br><br>
 <div style=font-family:verdana;font-size:11px;margin-left:auto;margin-right:auto;width:75%;min-width:300px;max-width:750px >
 <a onclick='document.getElementById("backer").style.display="block";document.getElementById("footer").style.display="block";' style="cursor: pointer;float:right;">Insert a new record</a>
-
+<br><br>
 
 <table ng-init="listcirs()">
- <tr><td>Name</td><td>ID</td><td>Size</td><td>Provider</td><td>Type</td></tr>
- <tr><td colspan=5><hr></td></tr>
+ <tr style=text-decoration:bold><td>Name</td><td>ID</td><td>Size</td><td>Provider</td><td>Type</td></tr>
 <tr ng-repeat="cir in circuitlist">
 <td style=font-family:verdana;font-size:11px>{{cir.path.key}}</td>
 <td style=font-family:verdana;font-size:11px>{{cir.value.circuitid}}</td>
