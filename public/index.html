@@ -16,7 +16,7 @@
 <br><br>
 <div style=font-family:verdana;font-size:11px;margin-left:auto;margin-right:auto;width:75%;min-width:300px;max-width:750px >
  <h1>PBandJ Circuit Reference</h1>
-<a onclick='document.getElementById("backer").style.display="block";document.getElementById("footer").style.display="block";' style="cursor: pointer;float:right;">Insert a new record</a>
+<a onclick='document.getElementById("backer").style.display="block";document.getElementById("inserter").style.display="block";' style="cursor: pointer;float:right;">Insert a new record</a>
 <br><br>
 
 <table ng-init="listcirs()">
@@ -33,10 +33,10 @@
 </tr>
 </table>
 </div>
-<div   id=footer style=display:none;position:fixed;left:35%;top:30%;z-index:1000;background-color:white;padding:20px;>
-  <span style=float:right;><a style=cursor:pointer onclick='document.getElementById("backer").style.display="none";document.getElementById("footer").style.display="none";'>close</a></a></span><br><br>
-<form  novalidate class="simple-form" >
 
+<div   id=inserter style=display:none;position:fixed;left:35%;top:30%;z-index:1000;background-color:white;padding:20px;>
+  <span style=float:right;><a style=cursor:pointer onclick='document.getElementById("backer").style.display="none";document.getElementById("inserter").style.display="none";'>close</a></a></span><br><br>
+<form  novalidate class="simple-form" >
 <table>
  <tr><td colspan=2><center>Input New Circuit</center></td></tr>
  <tr><td>name</td><td><input ng-model="cirz.key"><input style=display:none;  value='p'  ng-model="cirz.o"></td></tr>
@@ -47,6 +47,21 @@
 <tr><td colspan=2><input type=button  ng-click="update(cirz)" value="Save" ></td></tr>
 <tr><td ng-bind="responder"></td></tr></table>
 </form></div>
+
+<div   id=updater style=display:none;position:fixed;left:35%;top:30%;z-index:1000;background-color:white;padding:20px;>
+  <span style=float:right;><a style=cursor:pointer onclick='document.getElementById("backer").style.display="none";document.getElementById("updater").style.display="none";'>close</a></a></span><br><br>
+<form  novalidate class="simple-form" >
+<table>
+ <tr><td colspan=2><center>Input New Circuit</center></td></tr>
+ <tr><td>name</td><td><input ng-model="cirz.key"><input style=display:none;  value='p'  ng-model="cirz.o"></td></tr>
+<tr><td>id</td><td><input  ng-model="cirz.cid"></td></tr>
+<tr><td>size</td><td><input  ng-model="cirz.csz"></td></tr>
+<tr><td>provider</td><td><input  ng-model="cirz.cpr"></td></tr>
+<tr><td>type</td><td><input  ng-model="cirz.cty"></td></tr>
+<tr><td colspan=2><input type=button  ng-click="update(cirz)" value="Save" ></td></tr>
+<tr><td ng-bind="responder"></td></tr></table>
+</form></div>
+
 
 <img src=gray.png id=backer style=width:100%;height:100%;top:0;left:0;position:fixed;z-index:500;opacity:0.6;display:none;>
 
@@ -68,7 +83,9 @@ $http({ url: window.location.hostname+'/app.js',    method: "GET",    params: {o
 
  $scope.update = function(cirz)  { $http({ url:  window.location.hostname +'/app.js',    method: "GET",    params: {o: 'p',key: cirz.key, cid: cirz.cid, cty: cirz.cty, cpr: cirz.cpr, csz: cirz.csz}}).success(function(data, status, headers, config) 
 {$scope.listcirs(); $scope.$apply; $scope.cirz.key='';$scope.cirz.cid='';$scope.cirz.csz='';$scope.cirz.cpr='';$scope.cirz.cty=''; 
-document.getElementById("footer").style.display="none";document.getElementById("backer").style.display="none"; });   }; 
+document.getElementById("inserter").style.display="none";document.getElementById("backer").style.display="none"; });   }; 
+
+
 
 $scope.deleter= function(cir){ if (window.confirm("Really Delete?")) 
 {  $http({ url:   window.location.hostname +'/app.js',     method: "GET",    params: {o: 'd', key: cir.path.key}}).success(function(data, status, headers, config) { $scope.listcirs(); $scope.$apply  });  };};
