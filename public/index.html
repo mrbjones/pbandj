@@ -14,19 +14,8 @@
  <div style=float:right>{{emailer}} | <a href style=color:blue;cursor:hand; ng-click="loggout()">Logout</a></div>
 <center><br><br><a href=index.html style=text-decoration:none;><img src=pbandj.jpg ></a>
 <br><br>
-<a onclick='document.getElementById("footer").style.display="block";' style="cursor: pointer;">Insert a new record</a>
-<div   id=footer style=display:none;>
-<form  novalidate class="simple-form" >
-<table>
- <tr><td>name</td><td><input ng-model="cirz.key"><input style=display:none;  value='p'  ng-model="cirz.o"></td></tr>
-<tr><td>id</td><td><input  ng-model="cirz.cid"></td></tr>
-<tr><td>size</td><td><input  ng-model="cirz.csz"></td></tr>
-<tr><td>provider</td><td><input  ng-model="cirz.cpr"></td></tr>
-<tr><td>type</td><td><input  ng-model="cirz.cty"></td></tr>
-<tr><td colspan=2><input type=button  ng-click="update(cirz)" value="Save" ></td></tr>
-<tr><td ng-bind="responder"></td></tr></table>
-</form></div>
-<br><br>
+<a onclick='document.getElementById("backer").style.display="block";document.getElementById("footer").style.display="block";' style="cursor: pointer;">Insert a new record</a>
+
 
 <table ng-init="listcirs()">
  <tr><td>Name</td><td>ID</td><td>Size</td><td>Provider</td><td>Type</td></tr>
@@ -43,6 +32,20 @@
 </table>
 
 </div></center>
+
+<div   id=footer style=display:none;position:fixed;left:30%;top:30%;width:30%;z-index:1000>
+<form  novalidate class="simple-form" >
+<table>
+ <tr><td>name</td><td><input ng-model="cirz.key"><input style=display:none;  value='p'  ng-model="cirz.o"></td></tr>
+<tr><td>id</td><td><input  ng-model="cirz.cid"></td></tr>
+<tr><td>size</td><td><input  ng-model="cirz.csz"></td></tr>
+<tr><td>provider</td><td><input  ng-model="cirz.cpr"></td></tr>
+<tr><td>type</td><td><input  ng-model="cirz.cty"></td></tr>
+<tr><td colspan=2><input type=button  ng-click="update(cirz)" value="Save" ></td></tr>
+<tr><td ng-bind="responder"></td></tr></table>
+</form></div>
+
+<img src=gray.png id=backer style=width:100%;height:100%;position:fixed;z-index:500;opacity:0.6;display:none;>
 
 
 <script>
