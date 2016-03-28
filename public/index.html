@@ -15,10 +15,10 @@
 <center><br><br><a href=index.html style=text-decoration:none;><img src=pbandj.jpg ></a>
 <br><br>
 <a onclick='document.getElementById("backer").style.display="block";document.getElementById("footer").style.display="block";' style="cursor: pointer;">Insert a new record</a>
-
+<br><br>
 
 <table ng-init="listcirs()">
- <tr><td>Name</td><td>ID</td><td>Size</td><td>Provider</td><td>Type</td></tr>
+ <tr style=text-decoration:bold;><td>Name</td><td>ID</td><td>Size</td><td>Provider</td><td>Type</td></tr>
  <tr><td colspan=5><hr></td></tr>
 <tr ng-repeat="cir in circuitlist">
 <td style=font-family:verdana;font-size:11px>{{cir.path.key}}</td>
@@ -34,7 +34,7 @@
 
 
 <div   id=footer style=display:none;position:fixed;left:30%;top:30%;z-index:1000;background-color:white;padding:20px;>
-  <span style=float:right;><a onclick='document.getElementById("backer").style.display="none";document.getElementById("footer").style.display="none";'>close</a></a></span><br><br>
+  <span style=float:right;><a style="cursor:pointer;" onclick='document.getElementById("backer").style.display="none";document.getElementById("footer").style.display="none";'>close</a></a></span><br><br>
 <form  novalidate class="simple-form" >
 
 <table>
@@ -45,7 +45,7 @@
 <tr><td>provider</td><td><input  ng-model="cirz.cpr"></td></tr>
 <tr><td>type</td><td><input  ng-model="cirz.cty"></td></tr>
 <tr><td colspan=2><input type=button  ng-click="update(cirz)" value="Save" ></td></tr>
-<tr><td ng-bind="responder"></td></tr></table>
+</table>
 </form></div>
 
 <img src=gray.png id=backer style=width:100%;height:100%;top:0;left:0;position:fixed;z-index:500;opacity:0.6;display:none;>
