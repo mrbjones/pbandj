@@ -33,11 +33,12 @@
 
 
 
-<div   id=footer style=display:none;position:fixed;left:30%;top:30%;z-index:1000;background-color:white;>
+<div   id=footer style=display:none;position:fixed;left:30%;top:30%;z-index:1000;background-color:white;padding:20px;>
   <span style=float:right;><a onclick='document.getElementById("backer").style.display="none";document.getElementById("footer").style.display="none";'>close</a></a></span><br><br>
 <form  novalidate class="simple-form" >
 
 <table>
+ <tr><td colspan=2><center>Input New Circuit</center></td></tr>
  <tr><td>name</td><td><input ng-model="cirz.key"><input style=display:none;  value='p'  ng-model="cirz.o"></td></tr>
 <tr><td>id</td><td><input  ng-model="cirz.cid"></td></tr>
 <tr><td>size</td><td><input  ng-model="cirz.csz"></td></tr>
