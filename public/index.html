@@ -31,9 +31,9 @@
 </tr>
 </table>
 
-</div></center>
 
-<div   id=footer style=display:none;position:fixed;left:30%;top:30%;width:30%;z-index:1000>
+
+<div   id=footer style=display:none;position:fixed;left:30%;top:30%;width:30%;z-index:1000;background-color:white;>
 <form  novalidate class="simple-form" >
  <span style=float:right;><a onclick='document.getElementById("backer").style.display="none";document.getElementById("footer").style.display="none";'>close</a></a></span><br><br>
 <table>
@@ -48,6 +48,7 @@
 
 <img src=gray.png id=backer style=width:100%;height:100%;top:0;left:0;position:fixed;z-index:500;opacity:0.6;display:none;>
 
+</div></center>
 
 <script>
 var myApp=angular.module('putter', ['ngCookies']);
@@ -65,7 +66,7 @@ $http({ url: window.location.hostname+'/app.js',    method: "GET",    params: {o
 
  $scope.update = function(cirz)  { $http({ url:  window.location.hostname +'/app.js',    method: "GET",    params: {o: 'p',key: cirz.key, cid: cirz.cid, cty: cirz.cty, cpr: cirz.cpr, csz: cirz.csz}}).success(function(data, status, headers, config) 
 {$scope.listcirs(); $scope.$apply; $scope.cirz.key='';$scope.cirz.cid='';$scope.cirz.csz='';$scope.cirz.cpr='';$scope.cirz.cty=''; 
-document.getElementById("footer").style.display="none"; });   }; 
+document.getElementById("footer").style.display="none";document.getElementById("backer").style.display="none"; });   }; 
 
 $scope.deleter= function(cir){ if (window.confirm("Really Delete?")) 
 {  $http({ url:   window.location.hostname +'/app.js',     method: "GET",    params: {o: 'd', key: cir.path.key}}).success(function(data, status, headers, config) { $scope.listcirs(); $scope.$apply  });  };};
