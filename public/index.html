@@ -33,9 +33,10 @@
 
 
 
-<div   id=footer style=display:none;position:fixed;left:30%;top:30%;width:30%;z-index:1000;background-color:white;>
+<div   id=footer style=display:none;position:fixed;left:30%;top:30%;z-index:1000;background-color:white;>
+  <span style=float:right;><a onclick='document.getElementById("backer").style.display="none";document.getElementById("footer").style.display="none";'>close</a></a></span><br><br>
 <form  novalidate class="simple-form" >
- <span style=float:right;><a onclick='document.getElementById("backer").style.display="none";document.getElementById("footer").style.display="none";'>close</a></a></span><br><br>
+
 <table>
  <tr><td>name</td><td><input ng-model="cirz.key"><input style=display:none;  value='p'  ng-model="cirz.o"></td></tr>
 <tr><td>id</td><td><input  ng-model="cirz.cid"></td></tr>
