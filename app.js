@@ -171,7 +171,7 @@ db.put('circuits', keyer, jsonObj, false);
 function getter(em1,cb) {
 db.newSearchBuilder()
 .collection('circuits')
-.query('value.cuser: "'+em1+'"')
+.query('cuser: "'+em1+'"')
 .then(function (result) {
   var items = result.body.results;
   cb(JSON.stringify(items, ['path', 'key', 'value', 'circuitid', 'circuitsize', 'circuitprovider', 'circuittype']));
