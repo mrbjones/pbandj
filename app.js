@@ -161,15 +161,15 @@ console.log(mail);
 //end login functions
 
 //start page functions
-function putter(keyer,cid,csz,cpr,cty,cb) {
-var jsonString = "{\"circuitid\":\"" +cid+ "\", \"circuitsize\":\""+csz+"\", \"circuitprovider\":\""+cpr+"\", \"circuittype\":\""+cty+"\"}";
+function putter(keyer,cid,csz,cpr,cty,em1,cb) {
+var jsonString = "{\"circuitid\":\"" +cid+ "\", \"circuitsize\":\""+csz+"\", \"circuitprovider\":\""+cpr+"\", \"circuittype\":\""+cty+"\", \"cuser\":\""+em1+"\"}";
 var jsonObj = JSON.parse(jsonString);
 db.put('circuits', keyer, jsonObj, false);
  cb("success :!");
 };
 
-function getter(cb) {
-db.list('circuits')
+function getter(em1,cb) {
+db.search('circuits', 'cuser:' +em1, limit:'15')
 .then(function (result) {
   var items = result.body.results;
   cb(JSON.stringify(items, ['path', 'key', 'value', 'circuitid', 'circuitsize', 'circuitprovider', 'circuittype']));
@@ -299,12 +299,19 @@ serverWorking(response, absPath);
     cpr=queryData.cpr
     ckey=queryData.key
     
-    putter(ckey,cid,csz,cty,cpr, function(resp)
+     var cookies = new Cookies( request, response )
+       em1=cookies.get("email")
+    
+    putter(ckey,cid,csz,cty,cpr,em1, function(resp)
  {response.write(resp);response.end();
  });
 } 
   if (queryData.o == "g")
-{ getter( function(resp)
+{ 
+      
+       var cookies = new Cookies( request, response )
+       em1=cookies.get("email")
+       getter( em1,function(resp)
  { response.write(resp);response.end();
  });
 } 
